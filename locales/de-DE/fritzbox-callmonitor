@@ -1,0 +1,14 @@
+{
+  "communication/fritzbox-callmonitor.hni": {
+    "fritzbox-callmonitor": {
+      "label": {
+        "name": "Name",
+        "fritzbox": "FritzBox",
+        "port": "Port"
+      },
+      "tip": "Tip: See the Info tab for help writing functions.",
+      "paletteHelp": "<p>Überwacht die Fritzbox bzgl. eingehender und ausgehnder Anrufe.</p>",
+      "help": "<p>Überwacht die Fritzbox bzgl. eingehender und ausgehnder Anrufe.</p>"
+    }
+  }
+}

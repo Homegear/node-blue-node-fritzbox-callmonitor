@@ -1,0 +1,74 @@
+<script type="text/x-homegear">
+{
+    "name": "fritzbox-callmonitor",
+    "readableName": "fritzbox-callmonitor",
+    "version": "1.0.0-1",
+    "maxThreadCount": 1
+}
+</script>
+<script type="text/x-red" data-template-name="fritzbox-callmonitor">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="fritzbox-callmonitor.label.name"></span></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]fritzbox-callmonitor.label.name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-fritzbox"><i class="fa fa-globe"></i> <span data-i18n="fritzbox-callmonitor.label.fritzbox"></span></label>
+        <input type="text" id="node-input-fritzbox" data-i18n="[placeholder]fritzbox-callmonitor.label.fritzbox">
+    </div>
+    <div class="form-row">
+        <label for="node-input-port"><i class="fa fa-tasks"></i> <span data-i18n="fritzbox-callmonitor.label.port"></span></label>
+        <input type="number" id="node-input-port" data-i18n="[placeholder]fritzbox-callmonitor.label.port">
+    </div>      
+</script>
+<script type="text/javascript">
+    RED.nodes.registerType('fritzbox-callmonitor',{
+        color:"#2E90DD",
+        category: 'communication',
+        namespace: 'communication',
+        defaults: {
+            name: {value:""},
+            fritzbox: {value:""},
+            port: {value:1012},
+        },
+        inputs:0,
+        outputs:1,
+        align: "left",
+        icon: "fritzbox.png",
+        label: function() {
+            if(this.name) return this.name;
+            return this.fritzbox;
+        },
+        oneditprepare: function() {
+            var that = this;
+            $( "#node-input-inputs" ).spinner({
+                min:0
+            });
+            $( "#node-input-outputs" ).spinner({
+                min:1
+            });
+
+            this.editor = RED.editor.createEditor({
+                id: 'node-input-message-editor',
+                mode: {path:"ace/mode/text", inline:true},
+                value: $("#node-input-message").val(),
+            });
+
+            this.editor.focus();
+        },
+        oneditsave: function() {
+            $("#node-input-message").val(this.editor.getValue());
+            delete this.editor;
+        },
+        oneditresize: function(size) {
+            var rows = $("#dialog-form>div:not(.node-text-editor-row)");
+            var height = $("#dialog-form").height();
+            for (var i=0;i<rows.size();i++) {
+                height -= $(rows[i]).outerHeight(true);
+            }
+            var editorRow = $("#dialog-form>div.node-text-editor-row");
+            height -= (parseInt(editorRow.css("marginTop"))+parseInt(editorRow.css("marginBottom")));
+            $(".node-text-editor").css("height",height+"px");
+            this.editor.resize();
+        }
+    });
+</script>

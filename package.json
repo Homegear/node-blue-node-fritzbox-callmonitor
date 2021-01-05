@@ -1,0 +1,14 @@
+{
+  "name": "node-blue-node-fritzbox-callmonitor",
+  "version": "1.0.1",
+  "description": "This package provides a fritzbox-callmonitor node for Node-BLUE.",
+  "homepage": "https://github.com/Homegear/node-blue-node-fritzbox-callmonitor",
+  "node-blue": {
+    "maxThreadCounts": {
+      "fritzbox-callmonitor": 1
+    },
+    "nodes": {
+      "fritzbox-callmonitor": "fritzbox-callmonitor.s.php"
+    }
+  }
+}
